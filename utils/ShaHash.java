@@ -24,4 +24,12 @@ public class ShaHash {
       throw new RuntimeException("SHA-256 algorithm not available", e);
     }
   }
+
+  // display the hash in a shortened format
+  public static String getShortHash(String hash) {
+    if (hash == null || hash.length() < 8) {
+      return hash; // Return as is if too short
+    }
+    return hash.substring(0, 8) + "..."; // Shorten to first 8 characters
+  }
 }

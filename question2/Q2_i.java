@@ -11,7 +11,7 @@ public class Q2_i {
     System.out.println("\nTesting with different input sizes:");
     testMerkleTree(List.of("single"));
     testMerkleTree(List.of("tx1", "tx2"));
-    testMerkleTree(List.of("tx1", "tx2", "tx3", "tx4", "tx5", "tx6"));
+    testMerkleTree(List.of("tx1", "tx2", "tx3"));
   }
 
   /**
@@ -41,7 +41,7 @@ public class Q2_i {
      
       printTreeStructure(dataItems, allLevels);
   
-      return currentLevel.get(0); // This is the Merkle root
+      return currentLevel.get(0); // Merkle root
     }
 
   /**
@@ -53,14 +53,8 @@ public class Q2_i {
 
     for (int i = 0; i < currentLevel.size(); i += 2) {
       String leftChild = currentLevel.get(i);
-      String rightChild;
-
-      // Handle odd number of nodes - duplicate the last node
-      if (i + 1 < currentLevel.size()) {
-        rightChild = currentLevel.get(i + 1);
-      } else {
-        rightChild = leftChild; // Duplicate the last node
-      }
+      
+      String rightChild = (i + 1 < currentLevel.size()) ? currentLevel.get(i + 1) : leftChild; // Handle odd nodes
 
       // Combine and hash the two children
       String combinedHash = ShaHash.sha256Hash(leftChild + rightChild);

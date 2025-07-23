@@ -53,11 +53,7 @@ public class Q2_ii {
         if (i == (currentIndex / 2) * 2) {
           if (currentIndex % 2 == 0) {
             // Current node is left child, sibling is right
-            if (i + 1 < currentLevel.size()) {
-              proof.add(new ProofNode(rightHash, false)); // Right sibling
-            } else {
-              proof.add(new ProofNode(leftHash, false)); // Right sibling is duplicate
-            }
+            proof.add(new ProofNode(rightHash, false)); // Right sibling is duplicate
           } else {
             // Current node is right child, sibling is left
             proof.add(new ProofNode(leftHash, true)); // Left sibling

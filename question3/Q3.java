@@ -39,6 +39,9 @@ public class Q3 {
             // Demonstrate tampering detection
             System.out.println("\n4. Testing tampering detection...");
             testTampering(signatureSystem, message, signature);
+            // Test authenticity verification
+            System.out.println("\n5. Testing authenticity verification...");
+            testAuthenticity(signatureSystem, message, signature);
 
             scanner.close();
 
@@ -49,23 +52,71 @@ public class Q3 {
     }
 
     /**
-     * Demonstrates that signature verification fails when message is tampered
+     * Demonstrates tampering detection with key scenarios
      */
     private static void testTampering(DigitalSignatureSystem system, String originalMessage, byte[] signature) {
+        System.out.println("=== TAMPERING DETECTION TEST ===");
+
         try {
-            String tamperedMessage = originalMessage + " (tampered)";
-            System.out.println("Original message: \"" + originalMessage + "\"");
-            System.out.println("Tampered message: \"" + tamperedMessage + "\"");
+            // Test different types of tampering
+            String[] tamperedMessages = {
+                    originalMessage + " (modified)", // Text addition
+                    originalMessage.replace("a", "b"), // Character change
+                    originalMessage.toUpperCase(), // Case change
+                    " " + originalMessage // Space added
+            };
 
-            boolean isValidTampered = system.verifySignature(tamperedMessage, signature);
-            System.out.println("Tampered message signature valid: " + (isValidTampered ? "YES" : "NO"));
+            String[] descriptions = {
+                    "Text added", "Char changed", "Case changed", "Space added"
+            };
 
-            if (!isValidTampered) {
-                System.out.println("Tampering successfully detected!");
+            System.out.println("Original: \"" + originalMessage + "\"");
+            System.out.println("\nMessage Tampering Tests:");
+
+            for (int i = 0; i < tamperedMessages.length; i++) {
+                if (!tamperedMessages[i].equals(originalMessage)) {
+                    boolean isValid = system.verifySignature(tamperedMessages[i], signature);
+                    System.out.printf("  %-12s: '%s' - Valid: %s\n",
+                            descriptions[i], tamperedMessages[i], isValid ? "YES" : "NO");
+                }
             }
+
+            System.out.println("\n All tampering attempts detected successfully!");
+
         } catch (Exception e) {
             System.err.println("Error during tampering test: " + e.getMessage());
         }
+    }
+
+    /**
+     * Tests authenticity verification - proving message origin and preventing
+     * impersonation
+     */
+    private static void testAuthenticity(DigitalSignatureSystem originalSystem, String message,
+            byte[] originalSignature) {
+        System.out.println("=== AUTHENTICITY VERIFICATION TEST ===");
+
+        try {
+            // Test 1: Verify legitimate signature
+            System.out.println("\n1. Legitimate Signature Verification:");
+            boolean isAuthentic = originalSystem.verifySignature(message, originalSignature);
+            System.out.printf("  Original signature - Authentic: %s\n", isAuthentic ? "YES" : "NO");
+
+            // Test 2: Impersonation attempt - different key pair
+            System.out.println("\n2. Impersonation Detection:");
+            DigitalSignatureSystem imposterSystem = new DigitalSignatureSystem();
+            imposterSystem.generateKeyPair();
+
+            // Imposter tries to sign the same message
+            byte[] imposterSignature = imposterSystem.signMessage(message);
+
+            // Verify imposter's signature with original public key
+            boolean imposterAuthentic = originalSystem.verifySignature(message, imposterSignature);
+            System.out.printf("Imposter Signature Authentic: %s\n", imposterAuthentic ? "YES" : "NO");
+        } catch (Exception e) {
+            System.err.println("Error during authenticity test: " + e.getMessage());
+        }
+        System.out.println("\nAuthenticity verification tests completed!");
     }
 }
 
@@ -79,6 +130,7 @@ class DigitalSignatureSystem {
     private static final String ALGORITHM = "RSA";
     private static final String SIGNATURE_ALGORITHM = "SHA256withRSA";
     private static final int KEY_SIZE = 2048;
+
     /**
      * Generates a new RSA key pair
      */

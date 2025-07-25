@@ -61,6 +61,13 @@ java question1.Q1_i
 
 **Sample Input:** `Hello World`
 
+**References:**
+- [Java MessageDigest Documentation](https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html)
+- [SHA-256 Algorithm Specification (NIST FIPS 180-4)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf)
+- [Cryptographic Hash Functions - Wikipedia](https://en.wikipedia.org/wiki/Cryptographic_hash_function)
+
+<!-- AI Assistant: Used GitHub Copilot to help implement bit-level hash comparison and visual connection display -->
+
 ---
 
 **Q1_ii.java - Hash Function Security Properties**
@@ -80,6 +87,13 @@ java question1.Q1_ii
 
 **Sample Input:** `Blockchain`
 
+**References:**
+- [Cryptographic Hash Function Security Properties](https://en.wikipedia.org/wiki/Cryptographic_hash_function#Properties)
+- [Birthday Attack and Collision Resistance](https://crypto.stackexchange.com/questions/1434/are-there-two-known-strings-which-have-the-same-md5-hash-value)
+- [Pre-image Resistance in Practice](https://security.stackexchange.com/questions/11717/why-is-sha-1-not-good-for-passwords)
+
+<!-- AI Assistant: Used GitHub Copilot to optimize sequential string generation and security analysis algorithms -->
+
 ---
 
 #### Question 2: Merkle Trees (if implemented)
@@ -93,6 +107,13 @@ javac -d . question2/Q2_i.java
 java question2.Q2_i
 ```
 
+**References:**
+- [Merkle Tree Concepts and Implementation](https://en.wikipedia.org/wiki/Merkle_tree)
+- [Binary Tree Data Structures in Java](https://www.baeldung.com/java-binary-tree)
+- [Blockchain Merkle Trees Explained](https://medium.com/coinmonks/merkle-trees-concepts-and-use-cases-5da873702318)
+
+<!-- AI Assistant: Used GitHub Copilot to design recursive tree construction and hash computation methods -->
+
 **Q2_ii.java - Merkle Tree Verification**
 ```bash
 # Compile
@@ -102,6 +123,13 @@ javac -d . question2/Q2_ii.java
 java question2.Q2_ii
 ```
 
+**References:**
+- [Merkle Proof Verification Algorithms](https://blog.ethereum.org/2015/11/15/merkling-in-ethereum/)
+- [Cryptographic Proof Systems](https://crypto.stanford.edu/~dabo/papers/batchcodes.pdf)
+- [Java Collections Framework for Tree Operations](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html)
+
+<!-- AI Assistant: Used GitHub Copilot to implement efficient proof verification and path validation logic -->
+
 **Q2_iii.java - Merkle Tree Efficiency**
 ```bash
 # Compile
@@ -110,6 +138,13 @@ javac -d . question2/Q2_iii.java
 # Run
 java question2.Q2_iii
 ```
+
+**References:**
+- [Time Complexity Analysis of Tree Algorithms](https://www.bigocheatsheet.com/)
+- [Merkle Tree Performance Optimization](https://github.com/ethereum/research/wiki/Merkling-optimizations)
+- [Java Performance Measurement Best Practices](https://www.oracle.com/technical-resources/articles/java/architect-benchmarking.html)
+
+<!-- AI Assistant: Used GitHub Copilot to create performance benchmarking and complexity analysis methods -->
 
 ---
 
@@ -133,6 +168,13 @@ java question3.Q3
 - Performance analysis
 
 **Sample Input:** `This is my digital signature test`
+
+**References:**
+- [RSA Digital Signature Algorithm (RFC 3447)](https://tools.ietf.org/html/rfc3447)
+- [Java Cryptography Architecture Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html)
+- [Digital Signature Security Analysis](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-4.pdf)
+
+<!-- AI Assistant: Used GitHub Copilot to implement comprehensive tampering detection tests and authenticity verification scenarios -->
 
 ## 📊 Expected Output Examples
 
